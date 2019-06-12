@@ -1,17 +1,33 @@
+#- name: Include vars from role
+#  include_vars:
+#    file: ./vars/main.yml
+
+#- name: Change PROJECTS_ROOT in Tower (D)
+#  tower_settings:
+#    name: PROJECTS_ROOT
+#    value: "/root/ansible_advance_homework/"
+#    tower_username: admin
+#    tower_password: r3dh4t1!
+ 
 - name: Create Homework Assignment project 
 # Use tower module or tower-cli to create Ansible Tower project. Name of the project is specifed in ./vars/main.yml
+  tower_project:
+    name: "{{ proj_name }}"
+#    local_path: "{{ proj_local_path }}"
+#    local_path: "/root/ansible_advance_homework"
+    scm_type: git
+    scm_url: "{{scm_url}}" 
 
 - name: Machine Credentail to connect to workstation using openstack.pub
   tower_credential:
-    name: Connect_to_workstation
-    organization: Default
-    state: present
-    kind: ssh
+    name: "Connect_to_workstation"
+    username: "cloud-user"
+    ssh_key_data: "/root/.ssh/openstack.pem"
+    kind: "ssh"
+    organization: "Default"
     tower_host: tower1.{{tower_GUID}}.example.opentlc.com
     tower_username: admin
     tower_password: r3dh4t1!
-    ssh_key_data: "/root/.ssh/openstack.pem"
-    username: cloud-user
 
 - name: Create Inventory
   command: |
@@ -36,7 +52,7 @@
     organization: Default
     state: present
     kind: ssh
-    tower_host: tower1.{{tower_GUID}}.example.opentlc.com
+#    tower_host: tower1.{{tower_GUID}}.example.opentlc.com
     tower_username: admin
     tower_password: r3dh4t1!
     tower_verify_ssl: no

@@ -10,23 +10,14 @@
       - osp.smoke
 
   - name: Curl website
-    command: curl http://10.10.10.10
+    command: 'curl http://{{ openstack_info.ansible_facts.openstack_servers[0].accessIPv4 }}'
     register: curl_response
     ignore_errors: yes
     tags:
       - osp.smoke
-    
-#  - debug:
-#     var: curl_response 
 
   - name: Fail if Ansible has done its job is not in the page content
     fail:
-     msg : Smoke test fails
-    # notify:
-    #  - delete servers
-    when: "'Ansible has done its job' not in curl_response.stdout"
+    when: "'Ansible has done its job' not in webpage.results[0].content"
     tags:
       - osp.smoke
-
-#  handlers:
-#   - name: delete servers
