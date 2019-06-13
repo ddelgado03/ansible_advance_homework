@@ -1,12 +1,10 @@
-#- hosts: localhost
-#  tasks:
-#  - name: Create workstation inventory
-#    add_host:
-#       name: "workstation-{{ osp_GUID }}.rhpds.opentlc.com"
-#       group: workstation
+- hosts: localhost
+  tasks:
+  - name: Create workstation inventory
+    add_host:
+       name: "workstation-{{ osp_GUID }}.rhpds.opentlc.com"
+       group: workstation
 
-#  - name: Checar valores
-#    debug: "workstation-{{ osp_GUID }}.rhpds.opentlc.com"
 
 - hosts: workstation
 #  remote_user: cloud-user
