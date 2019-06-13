@@ -5,8 +5,8 @@
 #       name: "workstation-{{ osp_GUID }}.rhpds.opentlc.com"
 #       group: workstation
 
-  - name: Checar valores
-    debug: "workstation-{{ osp_GUID }}.rhpds.opentlc.com"
+#  - name: Checar valores
+#    debug: "workstation-{{ osp_GUID }}.rhpds.opentlc.com"
 
 - hosts: workstation
 #  remote_user: cloud-user
