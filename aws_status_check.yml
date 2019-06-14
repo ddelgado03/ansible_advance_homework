@@ -1,4 +1,4 @@
-- hosts: tag_instance_filter_three_tier_app_diego_delgado_hpe_com_
+- hosts: tag_instance_filter_three_tier_app_diego_delgado_hpe_com
   gather_facts: false
   tasks:
   - name: Check the instances status
